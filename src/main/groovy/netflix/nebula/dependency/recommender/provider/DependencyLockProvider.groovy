@@ -8,9 +8,7 @@ class DependencyLockProvider extends FileBasedRecommendationProvider {
 
     DependencyLockProvider() {}
 
-    DependencyLockProvider(Project project) {
-        super(project)
-    }
+    DependencyLockProvider(Project project) {  super(project, "lock", "dependency") }
 
     @Override
     String getVersion(String org, String name) throws Exception {

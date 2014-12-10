@@ -22,7 +22,7 @@ public class MavenBomRecommendationProvider extends FileBasedRecommendationProvi
     private Map<String, String> recommendations;
 
     public MavenBomRecommendationProvider(Project project) {
-        super(project);
+        super(project, "pom");
     }
 
     @Override
@@ -41,16 +41,6 @@ public class MavenBomRecommendationProvider extends FileBasedRecommendationProvi
             }
         }
         return recommendations.get(org + ":" + name);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public InputStreamProvider setModule(Object dependencyNotation) {
-        if(dependencyNotation instanceof String && !((String) dependencyNotation).endsWith("@pom"))
-            dependencyNotation = dependencyNotation + "@pom";
-        if(dependencyNotation != null && Map.class.isAssignableFrom(dependencyNotation.getClass()))
-            ((Map) dependencyNotation).put("ext", "pom");
-        return super.setModule(dependencyNotation);
     }
 
     private static class ProjectPropertiesModelInterpolator extends StringSearchModelInterpolator {

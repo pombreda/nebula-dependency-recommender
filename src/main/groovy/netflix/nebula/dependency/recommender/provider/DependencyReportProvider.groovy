@@ -8,9 +8,7 @@ class DependencyReportProvider extends FileBasedRecommendationProvider {
 
     DependencyReportProvider() {}
 
-    DependencyReportProvider(Project project) {
-        super(project)
-    }
+    DependencyReportProvider(Project project) { super(project, "txt", "dependencies") }
 
     @Override
     String getVersion(String org, String name) throws Exception {
